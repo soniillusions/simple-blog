@@ -11,6 +11,55 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div class="container mt-4">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">OnlineToday</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Friends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Messages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ms-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item d-flex align-items-center">
+                  <span>Здравствуйте, <%= current_user.email %></span>
+                  <a class="nav-link">
+                    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+                  </a>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Войти', new_user_session_path, class: 'nav-link' %>
+                </li>
+
+              <li class="nav-item">
+                <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-link' %>
+              </li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %> <!-- Этот блок отображает контент страницы, например, index или show -->
+  </div>
   </body>
 </html>
