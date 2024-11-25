@@ -1,6 +1,12 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+body {
+  max-width: 1500px; /* Устанавливаем максимальную ширину для контента */
+  margin: 0 auto;   /* Центрируем контент по горизонтали */
+  padding: 0 15px;  /* Отступы по бокам, если нужно */
+}
+
 .center-column {
   background-color: #DCDCDC;
 }

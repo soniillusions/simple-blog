@@ -1,8 +1,7 @@
-class PersonsController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_user!, only: %i[edit update]
 
   def profile
-    @user = current_user
   end
 
   def edit
@@ -11,7 +10,7 @@ class PersonsController < ApplicationController
   def update
     if @user.update user_params
       flash[:success] = 'Profile updated'
-      redirect_to persons_profile_path
+      redirect_to users_profile_path
     else
       render :edit
     end

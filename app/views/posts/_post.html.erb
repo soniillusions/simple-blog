@@ -1,0 +1,17 @@
+<h1>
+  <%= post.user.email %>
+</h1>
+
+<div class="card-body">
+  <section class="card-text">
+    <time datetime="<%= post.formatted_created_at %>">
+      <small><%= post.formatted_created_at %></small>
+    </time>
+
+    <div class="my-2">
+      <p>
+        <%= post.body %>
+      </p>
+    </div>
+  </section>
+</div>
