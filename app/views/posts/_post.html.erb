@@ -1,8 +1,8 @@
-<h1>
-  <%= post.user.email %>
-</h1>
+<div class="card-body custom-card">
+  <h1>
+    <%= post.user.email %>
+  </h1>
 
-<div class="card-body">
   <section class="card-text">
     <time datetime="<%= post.formatted_created_at %>">
       <small><%= post.formatted_created_at %></small>
@@ -12,6 +12,12 @@
       <p>
         <%= post.body %>
       </p>
+    </div>
+
+    <div class="buttons-container">
+      <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
+      <%= button_to 'Delete', post_path(post), class: 'btn btn-danger',
+                    method: :delete, data: { confirm: "Are you sure?" } %>
     </div>
   </section>
 </div>

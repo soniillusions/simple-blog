@@ -14,3 +14,22 @@ body {
 .other-column {
   background-color: #E6E6FA;
 }
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-card {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.custom-card:hover {
+  transform: scale(1.02); /* Лёгкое увеличение */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
+}

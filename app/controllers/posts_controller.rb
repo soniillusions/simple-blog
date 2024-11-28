@@ -19,23 +19,32 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all.order(created_at: :desc)
+    @post = Post.find(params[:id])
   end
 
   def create
     @post = current_user.posts.build post_params
     if @post.save
       flash[:success] = "Post created!"
-      redirect_to
+      redirect_to posts_path
     else
       render :new
     end
   end
 
   def update
+    if @post.update post_params
+      flash[:success] = "Post updated!"
+      redirect_to posts_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @post.destroy
+    flash[:success] = "Post deleted!"
+    redirect_to posts_path
   end
 
   private
