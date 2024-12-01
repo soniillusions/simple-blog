@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  #before_action :require_authentication, except: [:index, :show]
+  before_action :require_authentication, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_post!
   after_action :verify_authorized

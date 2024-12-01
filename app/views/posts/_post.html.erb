@@ -15,9 +15,14 @@
     </div>
 
     <div class="buttons-container">
-      <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
-      <%= button_to 'Delete', post_path(post), class: 'btn btn-danger',
-                    method: :delete, data: { confirm: "Are you sure?" } %>
+      <% if policy(post).edit? %>
+        <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
+      <% end %>
+
+      <% if policy(post).destroy? %>
+        <%= button_to 'Delete', post_path(post), class: 'btn btn-danger',
+                      method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
     </div>
   </section>
 </div>
