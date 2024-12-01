@@ -1,15 +1,13 @@
-<h1>Users#profile</h1>
+<h1>User: <%= current_user.email %> </h1>
 
-<h1>Email: </h1>
-<%= current_user.email %>
+
+<% if @user.avatar_resized.attached? %>
+  <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+<% else %>
+  <p>No avatar</p>
+<% end %>
 
 <%= form_with model: @user, local: true do |form| %>
   <%= form.file_field :avatar %>
   <%= form.submit "Upload Avatar" %>
-<% end %>
-
-<% if @user.avatar_resized.attached? %>
-  <%= image_tag @user.avatar_resized %>
-<% else %>
-  <p>No avatar</p>
 <% end %>

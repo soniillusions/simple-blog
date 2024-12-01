@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   def resize_avatar
     image = MiniMagick::Image.read(avatar.download)
-    image.resize "100x100"
+    image.resize "200x200"
     filename = "avatar_resized_#{SecureRandom.uuid}.jpg"
     path = Rails.root.join('tmp', filename)
     image.write(path)
