@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_authentication, only: [:profile]
-  before_action :set_user!, only: %i[edit update]
+  before_action :set_user_by_username, only: [:profile]
 
   def profile
     @user = current_user
@@ -24,6 +24,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user_by_username
+    @user = User.find_by!(username: params[:username])
+  end
+
   def set_user!
     @user = User.find params[:id]
   end

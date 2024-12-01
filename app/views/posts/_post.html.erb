@@ -3,6 +3,12 @@
     <%= post.user.email %>
   </h1>
 
+  <% if post.user.avatar_resized.attached? %>
+    <%= image_tag post.user.avatar_resized, class: 'user-avatar-post' %>
+  <% else %>
+    <%= image_tag "/images/default_avatar100x100.jpg", class: 'user-avatar-post' %>
+  <% end %>
+
   <section class="card-text">
     <time datetime="<%= post.formatted_created_at %>">
       <small><%= post.formatted_created_at %></small>

@@ -1,10 +1,11 @@
 <h1>User: <%= current_user.email %> </h1>
+<h1>Username: <%= current_user.username %> </h1>
 
 
 <% if @user.avatar_resized.attached? %>
   <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
 <% else %>
-  <p>No avatar</p>
+  <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
 <% end %>
 
 <%= form_with model: @user, local: true do |form| %>

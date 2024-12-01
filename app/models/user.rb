@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_create :generate_random_username
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -11,7 +13,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :avatar_resized
 
-  validates :avatar, presence: true, blob: { content_type: :image } # supported options: :web_image, :image, :audio, :video, :text
+  validates :avatar, blob: { content_type: :image } # supported options: :web_image, :image, :audio, :video, :text
+  validates :username, uniqueness: { case_sensitive: false }
 
   def author?(obj)
     obj.user == self
@@ -35,5 +38,11 @@ class User < ApplicationRecord
     )
 
     File.delete(path)
+  end
+
+  private
+
+  def generate_random_username
+    self.username = SecureRandom.hex(8)
   end
 end
