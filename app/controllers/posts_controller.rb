@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
+  #before_action :require_authentication, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_post!
+  after_action :verify_authorized
 
   def index
     if params[:user_id]
@@ -55,5 +58,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find params[:id]
+  end
+
+  def authorize_post!
+    authorize(@post || Post)
   end
 end

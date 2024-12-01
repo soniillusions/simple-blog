@@ -8,4 +8,12 @@ class User < ApplicationRecord
          :validatable
 
   has_many :posts, dependent: :destroy
+
+  def author?(obj)
+    obj.user == self
+  end
+
+  def guest?
+    false
+  end
 end

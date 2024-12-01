@@ -67,3 +67,4 @@ end
 
 gem 'devise'
 gem 'draper'
+gem 'pundit', '~> 1.0'
