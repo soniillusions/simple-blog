@@ -68,3 +68,5 @@ end
 gem 'devise'
 gem 'draper'
 gem 'pundit', '~> 1.0'
+gem 'mini_magick', '~> 5.0.1'
+gem 'activestorage-validator'
