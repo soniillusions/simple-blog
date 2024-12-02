@@ -1,14 +1,25 @@
-<h1>User: <%= current_user.email %> </h1>
-<h1>Username: <%= current_user.username %> </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @user.avatar_resized.attached? %>
+        <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+      <% else %>
+        <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
+      <% end %>
+
+      <%= form_with model: @user, local: true do |form| %>
+        <%= form.file_field :avatar %>
+        <%= form.submit "Upload Avatar" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <h2>User: <%= current_user.email %> </h2>
+      <h2>Username: <%= current_user.username %> </h2>
+
+      <%= link_to 'Edit profile', edit_user_registration_path(@user), class: 'btn btn-warning' %>
+    </div>
+  </div>
+</div>
 
 
-<% if @user.avatar_resized.attached? %>
-  <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
-<% else %>
-  <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
-<% end %>
-
-<%= form_with model: @user, local: true do |form| %>
-  <%= form.file_field :avatar %>
-  <%= form.submit "Upload Avatar" %>
-<% end %>

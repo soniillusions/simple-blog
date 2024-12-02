@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_authentication, only: [:profile]
   before_action :set_user_by_username, only: [:profile]
+  before_action :set_user!, only: [:edit, :update]
 
   def profile
     @user = current_user
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       end
 
       flash[:success] = 'Profile updated'
-      redirect_to users_profile_path
+      redirect_to root_path
     else
       render :edit
     end
@@ -34,6 +35,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :avatar, :avatar_resized)
+    params.require(:user).permit(:email, :username, :password, :avatar, :avatar_resized)
   end
 end

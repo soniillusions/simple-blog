@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
+  resources :users, only: [:edit, :update]
 
   get '/users/:username', to: 'users#profile', as: :user_profile
-
-  resources :users, only: [:new, :create, :edit, :update, :show]
 
   resources :posts
 
