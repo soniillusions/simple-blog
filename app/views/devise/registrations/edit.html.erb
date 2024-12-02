@@ -1,45 +1,76 @@
-<%= link_to "Back", :back, class: 'btn btn-primary btn-lg mb-2' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @user.avatar_resized.attached? %>
+        <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+      <% else %>
+        <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
+      <% end %>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+      <%= form_with model: @user, local: true do |form| %>
+        <%= form.file_field :avatar %>
+        <%= form.submit "Upload Avatar" %>
+      <% end %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="col-md-8">
+      <h2>User: <%= current_user.email %> </h2>
+      <h2>Username: <%= current_user.username %> </h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg' %>
+      <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autocomplete: "username", class: 'form-control form-control-lg' %>
+  <br>
+
+  <div class="row">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :username %><br />
+        <%= f.text_field :username, autocomplete: "username", class: 'form-control form-control-lg' %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control form-control-lg' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control form-control-lg mb-2' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: 'btn btn-warning btn-lg mb-2' %>
+      </div>
+    <% end %>
+
+    <h3>Cancel my account</h3>
+
+    <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-lg mb-2' %></div>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg' %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control form-control-lg' %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control form-control-lg mb-2' %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update", class: 'btn btn-warning btn-lg mb-2' %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-lg mb-2' %></div>
 

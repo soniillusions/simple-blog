@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :require_authentication, only: [:profile]
   before_action :set_user_by_username, only: [:profile]
   before_action :set_user!, only: [:edit, :update]
+  before_action :set_posts, only: [:profile]
 
   def profile
     @user = current_user
+    @user.posts = @user.posts.decorate
   end
 
   def edit
@@ -32,6 +34,10 @@ class UsersController < ApplicationController
 
   def set_user!
     @user = User.find params[:id]
+  end
+
+  def set_posts
+    @posts = @user.posts
   end
 
   def user_params

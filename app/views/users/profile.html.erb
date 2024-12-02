@@ -6,19 +6,22 @@
       <% else %>
         <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
       <% end %>
-
-      <%= form_with model: @user, local: true do |form| %>
-        <%= form.file_field :avatar %>
-        <%= form.submit "Upload Avatar" %>
-      <% end %>
     </div>
 
     <div class="col-md-8">
-      <h2>User: <%= current_user.email %> </h2>
-      <h2>Username: <%= current_user.username %> </h2>
+      <h2>User: <%= @user.email %> </h2>
+      <h2>Username: <%= @user.username %> </h2>
 
       <%= link_to 'Edit profile', edit_user_registration_path(@user), class: 'btn btn-warning' %>
     </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <h1>Last posts by <%= @user.username %>:</h1>
+
+    <%= render @user.posts %>
   </div>
 </div>
 
