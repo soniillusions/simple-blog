@@ -37,10 +37,11 @@
             <% end %>
           </div>
 
-          <div class="post-right-button">
-            <%= link_to 'Show comments', post_path(post), class: 'btn btn-primary' %>
-            <%= link_to 'More', post_path(post), class: 'btn btn-primary' %>
-          </div>
+          <% if params[:action] == 'index' %>
+            <div class="post-right-button">
+              <%= link_to 'Show comments', post_path(post), class: 'btn btn-primary' %>
+            </div>
+          <% end %>
         </div>
       </section>
     </div>

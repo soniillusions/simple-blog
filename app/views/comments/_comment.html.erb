@@ -23,6 +23,12 @@
             <small><%= time_ago_in_words(comment.created_at) %> ago</small>
           </time>
         </section>
+
+        <% if policy(comment).destroy? %>
+          <%= link_to 'Delete', polymorphic_path([comment.commentable, comment]),
+                      class: 'btn btn-danger',
+                      data: {method: :delete, confirm: 'Are you sure?'} %>
+        <% end %>
       </div>
     </div>
   </div>

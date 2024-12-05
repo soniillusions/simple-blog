@@ -1,5 +1,14 @@
 class CommentsController < ApplicationController
+  before_action :require_authentication, except: [:show, :index]
   before_action :set_commentable!
+  before_action :set_post
+  after_action :verify_authorized
+
+  def index
+  end
+
+  def show
+  end
 
   def create
     @comment = @commentable.comments.build comment_params
@@ -13,10 +22,23 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    comment = @commentable.comments.find params[:id]
+    authorize comment
+
+    comment.destroy
+    flash[:success] = 'Comment deleted!'
+    redirect_to post_path(@post)
+  end
+
   private
 
   def comment_params
     params.require(:comment).permit(:body).merge(user: current_user)
+  end
+
+  def set_post
+    @post = @commentable.is_a?(Post) ? @commentable : @commentable.post
   end
 
   def set_commentable!
