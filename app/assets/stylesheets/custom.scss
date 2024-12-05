@@ -1,0 +1,93 @@
+body {
+  max-width: 1500px; /* Устанавливаем максимальную ширину для контента */
+  margin: 0 auto;   /* Центрируем контент по горизонтали */
+  padding: 0 15px;  /* Отступы по бокам, если нужно */
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  color: #333333;
+  text-align: center;
+  padding: 10px;
+}
+
+.center-column {
+  background-color: #DCDCDC;
+}
+
+.other-column {
+  background-color: #E6E6FA;
+}
+
+.user-avatar {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-avatar-post {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-avatar-comment {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-left-button {
+  display: flex;
+  gap: 10px;
+}
+
+.post-right-button {
+  margin-left: auto;
+}
+
+.custom-card {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.custom-card:hover {
+  transform: scale(1.02); /* Лёгкое увеличение */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
+}
+
+.custom-comment {
+  border: 2px solid #a6acaf;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.custom-comment:hover {
+  transform: scale(1.02); /* Лёгкое увеличение */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
+}

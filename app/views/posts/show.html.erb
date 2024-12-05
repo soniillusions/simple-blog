@@ -1,0 +1,4 @@
+<%= render @post %>
+
+<%= render 'comments/commentable', commentable: @post, comment: @comment,
+           html_id: 'postComments' %>

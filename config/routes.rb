@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   get '/users/:username', to: 'users#profile', as: :user_profile
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
 
   # Defines the root path route ("/")
   root "posts#index"
