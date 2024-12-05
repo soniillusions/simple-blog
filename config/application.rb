@@ -23,5 +23,8 @@ module OnlineToday
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.after_initialize do
+      ActiveRecord::Base.logger = Logger.new(STDOUT)
+    end
   end
 end

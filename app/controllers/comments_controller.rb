@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build comment_params
 
+    authorize @comment
+
     if @comment.save
       flash[:success] = 'Comment created!'
       redirect_to @commentable
