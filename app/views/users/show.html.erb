@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @user.avatar_resized.attached? %>
+        <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+      <% else %>
+        <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <h2>User: <%= @user.email %> </h2>
+      <h2>Username: <%= @user.username %> </h2>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <h1>Last posts by <%= @user.username %>:</h1>
+
+    <%= render @user.posts %>
+  </div>
+</div>

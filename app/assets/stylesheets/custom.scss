@@ -91,3 +91,15 @@ footer {
   transform: scale(1.02); /* Лёгкое увеличение */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
 }
+
+.user-link {
+  color: #121212; /* Замените на любой цвет, который хотите */
+  text-decoration: none;
+}
+
+.user-link:hover {
+  color: #4f4f4f; /* Цвет при наведении курсора */
+}
+
+
+

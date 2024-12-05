@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :show]
 
-  get '/users/:username', to: 'users#profile', as: :user_profile
+  get '/users/:username/profile', to: 'users#profile', as: :user_profile
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
