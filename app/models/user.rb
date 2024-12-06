@@ -14,7 +14,10 @@ class User < ApplicationRecord
   has_one_attached :avatar_resized
 
   validates :avatar, blob: { content_type: :image } # supported options: :web_image, :image, :audio, :video, :text
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: { case_sensitive: false },
+            length: { minimum: 3, maximum: 20 },
+            presence: true,
+            if: -> { persisted? && username_changed? }
 
   def author?(obj)
     obj.user == self
@@ -43,6 +46,6 @@ class User < ApplicationRecord
   private
 
   def generate_random_username
-    self.username = SecureRandom.hex(8)
+    self.username = "user#" + SecureRandom.hex(6)
   end
 end
