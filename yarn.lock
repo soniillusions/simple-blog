@@ -483,6 +483,7 @@ __metadata:
     autoprefixer: "npm:^10.4.20"
     bootstrap: "npm:^5.3.3"
     bootstrap-icons: "npm:^1.11.3"
+    bs5-lightbox: "npm:^1.8.3"
     esbuild: "npm:^0.24.0"
     nodemon: "npm:^3.1.7"
     postcss: "npm:^8.4.49"
@@ -578,6 +579,15 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: 10c0/d747c9fb65ed7b4f1abcae4959405707ed9a7b835639f8a9ba0da2911995a6ab9b0648fd05baf2a4d4e3cf7f9fdbad56d3753f91881e365992c1d49c8d88ff7a
+  languageName: node
+  linkType: hard
+
+"bs5-lightbox@npm:^1.8.3":
+  version: 1.8.3
+  resolution: "bs5-lightbox@npm:1.8.3"
+  peerDependencies:
+    bootstrap: ^5.0.0
+  checksum: 10c0/929aebfec2d11bd191af5eae539c9706b6ca8173ba15c7b4a5008173db48894a40627e96286f2163ab55337cb9d4fff124919caf489304a33a2b18ef251bd961
   languageName: node
   linkType: hard
 
