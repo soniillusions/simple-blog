@@ -1,7 +1,8 @@
 body {
-  max-width: 1500px; /* Устанавливаем максимальную ширину для контента */
+  max-width: 1700px; /* Устанавливаем максимальную ширину для контента */
   margin: 0 auto;   /* Центрируем контент по горизонтали */
   padding: 0 15px;  /* Отступы по бокам, если нужно */
+  background-color: #DCDCDC;
 }
 
 .container-main {
@@ -92,6 +93,15 @@ footer {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
 }
 
+.custom-card-left {
+  border: 2px solid #888888;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 .user-link {
   color: #121212; /* Замените на любой цвет, который хотите */
   text-decoration: none;
@@ -101,4 +111,8 @@ footer {
   color: #4f4f4f; /* Цвет при наведении курсора */
 }
 
+.custom-navbar {
+  border: 2px solid #888888;
+  border-radius: 8px;
+}
 

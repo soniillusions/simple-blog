@@ -2,9 +2,11 @@
   <div class="row">
     <div class="col-md-4">
       <% if @user.avatar_resized.attached? %>
-        <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+        <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
+                    @user.avatar, data: { toggle: 'lightbox'} %>
       <% else %>
-        <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
+        <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
+                    "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
       <% end %>
 
       <%= form_with model: @user, local: true do |form| %>
@@ -14,7 +16,7 @@
     </div>
 
     <div class="col-md-8">
-      <h2>User: <%= current_user.email %> </h2>
+      <h2>Email: <%= current_user.email %> </h2>
       <h2>Username: <%= current_user.username %> </h2>
 
       <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>

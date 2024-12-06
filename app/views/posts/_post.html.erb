@@ -37,7 +37,7 @@
             <% end %>
           </div>
 
-          <% if params[:action] == 'index' %>
+          <% if params[:action] == 'index' || params[:controller] == 'users' && params[:action] == 'show' %>
             <div class="post-right-button">
               <%= link_to "#{post.comments.count} comments", post_path(post), class: 'btn btn-primary' %>
             </div>

@@ -2,14 +2,16 @@
   <div class="row">
     <div class="col-md-4">
       <% if @user.avatar_resized.attached? %>
-        <%= image_tag @user.avatar_resized, class: 'user-avatar' %>
+        <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
+                    @user.avatar, data: { toggle: 'lightbox'} %>
       <% else %>
-        <%= image_tag "/images/default_avatar.jpg", class: 'user-avatar' %>
+        <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
+                    "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
       <% end %>
     </div>
 
     <div class="col-md-8">
-      <h2>User: <%= @user.email %> </h2>
+      <h2>Email: <%= @user.email %> </h2>
       <h2>Username: <%= @user.username %> </h2>
 
       <%= link_to 'Edit profile', edit_user_registration_path(@user), class: 'btn btn-warning' %>

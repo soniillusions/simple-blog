@@ -16,23 +16,22 @@
       <div class="col-md-2">
       </div>
 
-      <div class="col-md-8 center-column">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <a class="navbar-brand" href="#">OnlineToday</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="col-md-8">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
+          <a class="navbar-brand ms-3" href="<%= root_path %>">OnlineToday</a>
+          <div class="collapse navbar-collapse me-3" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <%= link_to 'Home', posts_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Friends', root_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Messages', root_path, class: 'nav-link' %>
-              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'Home', posts_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Friends', root_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Messages', root_path, class: 'nav-link' %>
+                </li>
+              <% end %>
 
               <% if user_signed_in? %>
                 <li class="nav-item">
@@ -62,11 +61,55 @@
 
 
         <main class="container mt-3">
-          <% flash.each do |k, v| %>
-            <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
-          <% end %>
+          <div class="row">
+            <div class="col-sm-2">
+              <% if user_signed_in? %>
+                <div class="card-body custom-card-left mt-5">
+                  <h5>
+                    <%= link_to user_profile_path(current_user.username), class: 'nav-link' do %>
+                      My page
+                    <% end %>
+                  </h5>
 
-          <%= yield %>
+                  <h5>
+                    <%= link_to posts_path, class: 'nav-link' do %>
+                      News
+                    <% end %>
+                  </h5>
+
+                  <h5>
+                    <%= link_to posts_path, class: 'nav-link' do %>
+                      Friends
+                    <% end %>
+                  </h5>
+
+                  <h5>
+                    <%= link_to posts_path, class: 'nav-link' do %>
+                      Messages
+                    <% end %>
+                  </h5>
+
+                  <h5>
+                    <%= link_to posts_path, class: 'nav-link' do %>
+                      Groups
+                    <% end %>
+                  </h5>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="col-sm-8">
+              <% flash.each do |k, v| %>
+                <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+              <% end %>
+
+              <%= yield %>
+            </div>
+
+            <div class="col-sm-2">
+
+            </div>
+          </div>
         </main>
       </div>
 
