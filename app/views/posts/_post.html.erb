@@ -1,7 +1,6 @@
 <div class="card-body custom-card mb-3" onclick="window.location='<%= post_path(post) %>';" style="cursor: pointer;">
   <div class="row">
     <div class="col-sm-2">
-
       <% if post.user.avatar_resized.attached? %>
         <%= image_tag post.user.avatar_resized, class: 'user-avatar-post' %>
       <% else %>
