@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @pagy, @posts = pagy @user.posts.order(created_at: :desc)
+    @posts = @posts.decorate
   end
 
   def show
