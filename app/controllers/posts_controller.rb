@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   after_action :verify_authorized
 
   def index
-      @pagy, @posts =  pagy Post.all.order(created_at: :desc)
-      @posts = @posts.decorate
+    @pagy, @posts =  pagy Post.all.order(created_at: :desc)
+    @posts = @posts.decorate
   end
 
   def new
