@@ -6,11 +6,11 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
-    @user.posts = @user.posts.decorate
   end
 
   def show
-    @user.posts = @user.posts.decorate
+    @pagy, @posts = pagy @user.posts.order(created_at: :desc)
+    @posts = @posts.decorate
   end
 
   def edit

@@ -5,13 +5,8 @@ class PostsController < ApplicationController
   after_action :verify_authorized
 
   def index
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      @posts = @user.posts.order.(created_at: :desc)
-    else
-      @posts = Post.all.order(created_at: :desc)
+      @pagy, @posts =  pagy Post.all.order(created_at: :desc)
       @posts = @posts.decorate
-    end
   end
 
   def new

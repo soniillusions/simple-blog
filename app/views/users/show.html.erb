@@ -20,6 +20,8 @@
   <div class="row">
     <h1>Last posts by <%= @user.username %>:</h1>
 
-    <%= render @user.posts %>
+    <%= render @posts %>
+
+    <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 </div>

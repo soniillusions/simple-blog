@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/OnlineToday(backup).iml" filepath="$PROJECT_DIR$/.idea/OnlineToday(backup).iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OnlineToday.iml" filepath="$PROJECT_DIR$/.idea/OnlineToday.iml" />
     </modules>
   </component>
 </project>
