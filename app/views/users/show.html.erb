@@ -1,19 +1,22 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <% if @user.avatar_resized.attached? %>
-        <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
-                    @user.avatar, data: { toggle: 'lightbox'} %>
-      <% else %>
-        <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
-                    "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
-      <% end %>
-    </div>
+  <div class="card custom-user-card">
+    <div class="row">
+      <div class="col-md-4">
+        <% if @user.avatar_resized.attached? %>
+          <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
+                      @user.avatar, data: { toggle: 'lightbox'} %>
+        <% else %>
+          <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
+                      "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
+        <% end %>
+      </div>
 
-    <div class="col-md-8">
-      <h2><%= @user.username %> </h2>
+      <div class="col-md-8">
+        <h2><%= @user.username %> </h2>
+      </div>
     </div>
   </div>
+
 
   <br>
 

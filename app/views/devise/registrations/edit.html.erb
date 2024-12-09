@@ -1,27 +1,31 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <% if @user.avatar_resized.attached? %>
+  <div class="card custom-user-card">
+    <div class="row">
+      <div class="col-md-4">
+        <% if @user.avatar_resized.attached? %>
         <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
                     @user.avatar, data: { toggle: 'lightbox'} %>
-      <% else %>
+        <% else %>
         <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
                     "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
-      <% end %>
+        <% end %>
 
-      <%= form_with model: @user, local: true do |form| %>
+        <%= form_with model: @user, local: true do |form| %>
         <%= form.file_field :avatar %>
         <%= form.submit "Upload Avatar" %>
-      <% end %>
-    </div>
+        <% end %>
+        </div>
 
-    <div class="col-md-8">
-      <h2>Email: <%= current_user.email %> </h2>
-      <h2>Username: <%= current_user.username %> </h2>
+        <div class="col-md-8">
+        <h2><%= @user.username %> </h2>
+        <strong>Email: <%= @user.email %> </strong><br>
+        <strong>Username: <%= @user.username %> </strong><br>
 
-      <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>
+        <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>
+      </div>
     </div>
   </div>
+
 
   <br>
 

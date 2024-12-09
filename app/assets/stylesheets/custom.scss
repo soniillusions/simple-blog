@@ -66,8 +66,6 @@ footer {
 }
 
 .custom-card {
-  border: 2px solid #007bff;
-  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
   padding: 16px;
@@ -75,13 +73,22 @@ footer {
 }
 
 .custom-card:hover {
-  transform: scale(1.02); /* Лёгкое увеличение */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
 }
 
+.custom-user-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.custom-user-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
+}
+
+
 .custom-comment {
-  border: 2px solid #a6acaf;
-  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
   padding: 16px;
@@ -89,7 +96,6 @@ footer {
 }
 
 .custom-comment:hover {
-  transform: scale(1.02); /* Лёгкое увеличение */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
 }
 

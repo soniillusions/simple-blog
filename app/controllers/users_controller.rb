@@ -1,14 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_authentication, only: [:profile]
-  before_action :set_user_by_username, only: [:profile]
-  before_action :set_user!, only: [:edit, :update, :show]
-  before_action :set_posts, only: [:profile]
-
-  def profile
-    @user = current_user
-    @pagy, @posts = pagy @user.posts.order(created_at: :desc)
-    @posts = @posts.decorate
-  end
+  before_action :require_authentication, only: [:edit]
+  before_action :set_user_by_username, only: [:show]
+  before_action :set_user!, only: [:edit, :update]
 
   def show
     @pagy, @posts = pagy @user.posts.order(created_at: :desc)
@@ -39,11 +32,7 @@ class UsersController < ApplicationController
   end
 
   def set_user!
-    @user = User.find params[:id]
-  end
-
-  def set_posts
-    @posts = @user.posts
+    @user = User.find params[:username]
   end
 
   def user_params
