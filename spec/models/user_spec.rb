@@ -28,9 +28,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'associations' do
+    it 'can create a post' do
+      user = User.create(email: 'test_email@gmail.com', password: '123321', password_confirmation: '123321')
+      post = user.posts.build(body: 'post body')
+      expect(post).to be_valid
+      expect(post.user).to eq(user)
+    end
+  end
+
   describe 'callbacks' do
     it 'generates random username before create' do
-      user = User.create(email: 'test_email@gmail.com', password: 'password', password_confirmation: 'password')
+      user = User.create(email: 'test_email@gmail.com', password: '123321', password_confirmation: '123321')
       expect(user.username).to match(/^user#[a-f0-9]{12}$/) # Регулярное выражение для проверки формата пароля
     end
   end
