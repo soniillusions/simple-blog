@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
       flash[:success] = 'Comment created!'
       redirect_to @commentable
     else
+      @post = @commentable.decorate
       @comment = @comment.decorate
       render 'posts/show'
     end
