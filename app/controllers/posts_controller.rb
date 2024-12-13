@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_post!
   after_action :verify_authorized
+  before_action :fetch_tags, only: [:new, :edit]
 
   def index
     @pagy, @posts =  pagy Post.all.order(created_at: :desc)
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, tag_ids: [])
   end
 
   def set_post
@@ -59,5 +60,9 @@ class PostsController < ApplicationController
 
   def authorize_post!
     authorize(@post || Post)
+  end
+
+  def fetch_tags
+    @tags = Tag.all
   end
 end

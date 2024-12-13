@@ -9,5 +9,20 @@
     </div>
   </div>
 
-  <%= f.submit "Submit post!", class: 'btn btn-info' %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :tags %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true %>
+    </div>
+  </div>
+
+  <%= f.submit "Submit", class: 'btn btn-primary mb-2' %>
+<% end %>
+
+<% if params[:action] == 'edit' && policy(post).destroy? %>
+  <%= button_to 'Delete', post_path(post), class: 'btn btn-danger',
+                method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
