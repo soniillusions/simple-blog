@@ -1,15 +1,6 @@
 <div class="card custom-card mb-3" onclick="window.location='<%= post_path(post) %>';" style="cursor: pointer;">
   <div class="row">
     <div class="col-sm-2">
-    </div>
-
-    <div class="col-sm-10">
-      <%= render post.tags %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2">
       <% if post.user.avatar_resized.attached? %>
         <%= image_tag post.user.avatar_resized, class: 'user-avatar-post' %>
       <% else %>
@@ -54,4 +45,14 @@
       </section>
     </div>
   </div>
+
+  <% if params[:action] == 'index' %>
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-10">
+        <%= render post.tags %>
+      </div>
+    </div>
+  <% end %>
 </div>

@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def index
     @pagy, @posts =  pagy Post.all_by_tags(params[:tag_ids])
     @posts = @posts.decorate
+    @tag = Tag.find_by(id: params[:tag_ids])
   end
 
   def new

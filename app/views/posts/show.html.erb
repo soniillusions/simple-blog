@@ -1,4 +1,13 @@
 <%= render @post %>
 
+<% if @post.tags.present? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= render @post.tags %>
+    </div>
+  </div>
+<% end %>
+
 <%= render 'comments/commentable', commentable: @post, comment: @comment,
            html_id: 'postComments' %>
+
