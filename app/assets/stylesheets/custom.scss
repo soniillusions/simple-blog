@@ -86,7 +86,6 @@ footer {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более заметная тень при наведении */
 }
 
-
 .custom-comment {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
@@ -122,6 +121,10 @@ footer {
 
 .navbar {
   border-bottom: 1px solid #ddd; /* Добавь или измени стиль */
+}
+
+.navbar-nav a:hover {
+  text-decoration: underline; /* Подчеркивание текста при наведении */
 }
 
 .container-fluid {
