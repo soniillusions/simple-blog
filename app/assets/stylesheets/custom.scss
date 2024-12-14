@@ -1,5 +1,4 @@
 body {
-  max-width: 1700px; /* Устанавливаем максимальную ширину для контента */
   margin: 0 auto;   /* Центрируем контент по горизонтали */
   padding: 0 15px;  /* Отступы по бокам, если нужно */
   background-color: #DCDCDC;
@@ -117,8 +116,23 @@ footer {
   color: #4f4f4f; /* Цвет при наведении курсора */
 }
 
-.custom-navbar {
-  border: 2px solid #888888;
-  border-radius: 8px;
+.navbar-full-width {
+  width: 100%;
 }
 
+.navbar {
+  border-bottom: 1px solid #ddd; /* Добавь или измени стиль */
+}
+
+.container-fluid {
+  max-width: 950px;
+  padding-left: 15px;  /* Убираем лишний отступ, если он есть */
+  padding-right: 15px; /* Убираем лишний отступ, если он есть */
+}
+
+.main-content {
+  width: 100%;
+  max-width: 850px; /* Ограничение максимальной ширины */
+  margin: 0 auto;    /* Центрирование */
+  padding: 0 15px;   /* Отступы */
+}
