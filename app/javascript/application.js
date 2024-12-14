@@ -1,12 +1,18 @@
 // Entry point for the build script in your package.json
 import * as bootstrap from "bootstrap"
-import Rails from "@rails/ujs";
+import Rails from "@rails/ujs"
 
 import 'bootstrap/js/dist/collapse'
-import Lightbox from 'bs5-lightbox';
+import Lightbox from 'bs5-lightbox'
 
-document.querySelectorAll('.my-lightbox-toggle').forEach(el => el.addEventListener('click', Lightbox.initialize));
+import { Application } from "@hotwired/stimulus";
+import TomSelectController from "./controllers/tom_select_controller";
 
-Rails.start();
+const application = Application.start();
+application.register("tom-select", TomSelectController);
+
+document.querySelectorAll('.my-lightbox-toggle').forEach(el => el.addEventListener('click', Lightbox.initialize))
+
+Rails.start()
 
 

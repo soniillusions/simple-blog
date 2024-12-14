@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  namespace :api do
+    resources :tags, only: :index
+  end
+
   # Defines the root path route ("/")
   root "posts#index"
 end

@@ -1,3 +1,20 @@
+
+<section class="mb-5">
+  <h2>Search by tags: </h2>
+
+  <%= form_with url: posts_path, method: :get do |f| %>
+    <div class="mb-3">
+      <%= f.collection_select :tag_ids, (@tags || []), :id, :title, {selected: params[:tag_id]},
+        multiple: true, required: true,
+        class: 'js-multiple-select w-100',
+                              data: {'tom_select_ajax_url_value': '/api/tags',
+                                     'controller': 'tom-select'} %>
+
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</section>
+
 <h1>All posts:</h1>
 
 <% if current_user.present? %>

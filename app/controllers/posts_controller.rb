@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :fetch_tags, only: [:new, :edit]
 
   def index
-    @pagy, @posts =  pagy Post.all.order(created_at: :desc)
+    @pagy, @posts =  pagy Post.all_by_tags(params[:tag_ids])
     @posts = @posts.decorate
   end
 
