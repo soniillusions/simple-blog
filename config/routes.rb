@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
+  devise_for :users
 
   resources :users, only: [:edit, :update, :show], param: :username
+
+  resource :password_reset, only: %i[new create edit update]
 
   resources :posts do
     resources :comments, only: [:create, :destroy]

@@ -1,22 +1,22 @@
 <div class="container">
   <div class="card custom-user-card">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <% if @user.avatar_resized.attached? %>
-        <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
+        <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar mb-2'),
                     @user.avatar, data: { toggle: 'lightbox'} %>
         <% else %>
-        <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
+        <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar mb-2'),
                     "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
         <% end %>
 
         <%= form_with model: @user, local: true do |form| %>
-        <%= form.file_field :avatar %>
-        <%= form.submit "Upload Avatar" %>
+          <%= form.file_field :avatar, class: 'form-control mb-2' %>
+          <%= form.submit "Upload Avatar", class: 'btn btn-primary' %>
         <% end %>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-7">
         <h2><%= @user.username %> </h2>
           
         <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>
