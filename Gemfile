@@ -5,9 +5,6 @@ ruby '3.2.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.5'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
-
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '>= 1.4'
 
@@ -24,7 +21,7 @@ gem 'cssbundling-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -80,3 +77,6 @@ gem 'faker', '~> 3.5.1'
 gem 'mini_magick', '~> 5.0.1'
 gem 'pagy', '~> 9.3.3'
 gem 'pundit', '~> 1.0'
+
+gem 'propshaft', '~> 0.6'
+gem 'turbo-rails', '~> 1.0'

@@ -20,11 +20,18 @@
   <h3>All posts:</h3>
 
   <% if current_user.present? %>
-    <%= link_to 'New post', new_post_path, class: 'btn btn-primary btn-sm mb-3' %>
+    <%= link_to 'New post', new_post_path, class: 'btn btn-primary btn-sm mb-3',
+        data: { turbo_frame: dom_id(Post.new) }%>
+
+    <div class="my-3">
+      <%= turbo_frame_tag Post.new %>
+    </div>
   <% end %>
 <% end %>
 
-<%= render @posts %>
+<%= turbo_frame_tag 'posts' do %>
+  <%= render @posts %>
+<% end %>
 
 <div class="d-flex justify-content-center my-3">
   <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>

@@ -1,58 +1,59 @@
-<div class="card custom-card mb-3" onclick="window.location='<%= post_path(post) %>';" style="cursor: pointer;">
-  <div class="row">
-    <div class="col-sm-2">
-      <% if post.user.avatar_resized.attached? %>
-        <%= image_tag post.user.avatar_resized, class: 'user-avatar-post' %>
-      <% else %>
-        <%= image_tag "/images/default_avatar100x100.jpg", class: 'user-avatar-post' %>
-      <% end %>
-    </div>
-
-    <div class="col-sm-10">
-      <section class="card-text">
-        <h2>
-          <%= link_to post.user.username, user_path(post.user.username), class: 'user-link' %>
-        </h2>
-
-        <time>
-          <small><%= post.formatted_created_at %></small>
-        </time>
-
-        <div class="my-2">
-          <p>
-            <%= post.body %>
-          </p>
-        </div>
-
-        <div class="buttons-container">
-          <div class="post-left-button">
-            <% if policy(post).edit? && params[:action] == 'show' %>
-              <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
-            <% end %>
-
-            <% if policy(post).destroy? && params[:action] == 'show' %>
-              <%= button_to 'Delete', post_path(post), class: 'btn btn-danger',
-                            method: :delete, data: { confirm: "Are you sure?" } %>
-            <% end %>
-          </div>
-
-          <% if params[:action] == 'index' || params[:controller] == 'users' && params[:action] == 'show' %>
-            <div class="post-right-button">
-              <%= link_to "#{post.comments.count} comments", post_path(post), class: 'btn btn-primary' %>
-            </div>
-          <% end %>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <% if params[:action] == 'index' %>
+<%= turbo_frame_tag post do %>
+  <div class="card custom-card mb-3">
     <div class="row">
       <div class="col-sm-2">
+        <% if post.user.avatar_resized.attached? %>
+          <%= image_tag post.user.avatar_resized, class: 'user-avatar-post' %>
+        <% else %>
+          <%= image_tag "/images/default_avatar100x100.jpg", class: 'user-avatar-post' %>
+        <% end %>
       </div>
+
       <div class="col-sm-10">
-        <%= render post.tags %>
+        <section class="card-text">
+            <h2>
+              <%= link_to post.user.username, post_path(post), class: 'user-link', data: { turbo: false } %>
+            </h2>
+
+            <time>
+              <small><%= post.formatted_created_at %></small>
+            </time>
+
+            <div class="my-2">
+              <p>
+                <%= sanitize post.body %>
+              </p>
+            </div>
+
+          <div class="buttons-container">
+            <div class="post-left-button">
+              <% if policy(post).edit? && params[:action] == 'show' %>
+                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
+              <% end %>
+
+              <% if policy(post).destroy? && params[:action] == 'show' %>
+                <%= link_to 'Delete', post_path(post), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              <% end %>
+            </div>
+
+            <% unless params[:action] == 'show' %>
+              <div class="post-right-button">
+                <%= link_to "#{post.comments.count} comments", post_path(post), class: 'btn btn-primary', data: { turbo: false } %>
+              </div>
+            <% end %>
+          </div>
+        </section>
       </div>
     </div>
-  <% end %>
-</div>
+
+    <% unless params[:action] == 'show' %>
+      <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-10">
+          <%= render post.tags %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
