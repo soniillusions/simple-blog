@@ -4,10 +4,10 @@
       <div class="col-md-4">
         <% if @user.avatar_resized.attached? %>
           <%= link_to image_tag(@user.avatar_resized, class: 'user-avatar'),
-                      @user.avatar, data: { toggle: 'lightbox'} %>
+                      @user.avatar, data: { turbo: false, toggle: 'lightbox'} %>
         <% else %>
           <%= link_to image_tag("/images/default_avatar.jpg", class: 'user-avatar'),
-                      "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
+                      "/images/default_avatar.jpg", data: { turbo: false, toggle: 'lightbox'} %>
         <% end %>
       </div>
 
