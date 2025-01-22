@@ -9,14 +9,14 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  scope :all_by_tags, ->(tags) do
+  scope :all_by_tags, lambda { |tags|
     posts = includes(:user)
-    if tags
-      posts = posts.joins(:tags).where(tags: tags).preload(:tags)
-    else
-      posts = posts.includes(:post_tags, :tags)
-    end
+    posts = if tags
+              posts.joins(:tags).where(tags: tags).preload(:tags)
+            else
+              posts.includes(:post_tags, :tags)
+            end
 
     posts.order(created_at: :desc)
-  end
+  }
 end

@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
   before_action :require_authentication, only: [:edit]
   before_action :set_user_by_username, only: [:show]
-  before_action :set_user!, only: [:edit, :update]
+  before_action :set_user!, only: %i[edit update]
 
   def show
     @pagy, @posts = pagy @user.posts.order(created_at: :desc)
     @posts = @posts.decorate
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update user_params

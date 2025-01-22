@@ -1,14 +1,12 @@
 class CommentsController < ApplicationController
-  before_action :require_authentication, except: [:show, :index]
+  before_action :require_authentication, except: %i[show index]
   before_action :set_commentable!
   before_action :set_post
   after_action :verify_authorized
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def create
     @comment = @commentable.comments.build comment_params
@@ -21,7 +19,7 @@ class CommentsController < ApplicationController
     else
       @post = @commentable.decorate
       @comment = @comment.decorate
-      render 'posts/show'
+      render 'posts/show', status: :unprocessable_entity
     end
   end
 
@@ -45,7 +43,7 @@ class CommentsController < ApplicationController
   end
 
   def set_commentable!
-    klass = [Post].detect {|c| params["#{c.name.underscore}_id"]}
+    klass = [Post].detect { |c| params["#{c.name.underscore}_id"] }
     raise ActiveRecord::RecordNotFound if klass.blank?
 
     @commentable = klass.find(params["#{klass.name.underscore}_id"])

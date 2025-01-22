@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users, only: [:edit, :update, :show], param: :username
+  resources :users, only: %i[edit update show], param: :username
 
   resource :password_reset, only: %i[new create edit update]
 
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy]
   end
 
   namespace :api do
@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "posts#index"
+  root 'posts#index'
 end

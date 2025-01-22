@@ -9,7 +9,7 @@ module Authorization
     private
 
     def user_not_authorized
-      flash[:danger] = "You are not authorized to perform this action."
+      flash[:danger] = 'You are not authorized to perform this action.'
       redirect_to(request.referer || root_path)
     end
   end
