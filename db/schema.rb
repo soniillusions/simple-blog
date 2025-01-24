@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_12_13_122816) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,18 +45,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_122816) do
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.string "commentable_type", null: false
-    t.integer "commentable_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "parent_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
@@ -65,18 +67,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_122816) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
-  create_table "replies", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "comment_id", null: false
-    t.integer "user_id", null: false
-    t.index ["comment_id"], name: "index_replies_on_comment_id"
-    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -93,11 +85,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_122816) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role"], name: "index_users_on_role"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
@@ -107,6 +97,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_122816) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
-  add_foreign_key "replies", "comments"
-  add_foreign_key "replies", "users"
 end
