@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users, only: %i[edit update show], param: :username
+  resources :users, only: %i[edit update show], param: :username do
+    member do
+      delete :delete_avatar
+    end
+  end
 
   resource :password_reset, only: %i[new create edit update]
 

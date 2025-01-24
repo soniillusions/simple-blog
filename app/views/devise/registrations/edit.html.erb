@@ -14,9 +14,14 @@
           <%= form.file_field :avatar, class: 'form-control mb-2' %>
           <%= form.submit "Upload Avatar", class: 'btn btn-primary' %>
         <% end %>
-        </div>
 
-        <div class="col-md-7">
+        <% if @user.avatar_resized.attached? %>
+          <%= button_to "Delete Avatar", delete_avatar_user_path(@user), method: :delete, 
+              class: 'btn btn-danger mb-2', data: { confirm: 'Are you sure you want to delete your avatar?' } %>
+        <% end %>
+      </div>
+
+      <div class="col-md-7">
         <h2><%= @user.username %> </h2>
           
         <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>

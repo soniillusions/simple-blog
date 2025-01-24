@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_authentication, only: [:edit]
   before_action :set_user_by_username, only: [:show]
-  before_action :set_user!, only: %i[edit update]
+  before_action :set_user!, only: %i[edit update delete_avatar]
 
   def show
     @pagy, @posts = pagy @user.posts.order(created_at: :desc)
@@ -22,6 +22,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def delete_avatar
+    @user.avatar.purge
+    @user.avatar_resized.purge
+    redirect_to @user, notice: 'Avatar was successfully deleted.'
   end
 
   private
