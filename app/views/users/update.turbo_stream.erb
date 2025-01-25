@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@user) do %>
+  <%= render 'user_card', user: @user, editable: true %>
+<% end %>
+
+<%= prepend_flash %>

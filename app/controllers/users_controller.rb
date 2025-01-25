@@ -11,19 +11,26 @@ class UsersController < ApplicationController
   def edit; end
 
   def update_avatar
-    if @user.update user_params
-      if params[:user][:avatar].present?
-        respond_to do |format|
-          format.html do
-            @user.avatar.attach(params[:user][:avatar])
-            @user.resize_avatar
-            redirect_to edit_user_registration_path(current_user.username)
-            flash[:success] = 'Avatar updated!'
-          end
+    if params[:user].blank? || params[:user][:avatar].blank?
+      flash.now[:error] = 'No image present.'
+    elsif @user.update user_params
+      respond_to do |format|
+        format.html do
+          @user.avatar.attach(params[:user][:avatar])
+          @user.resize_avatar
+          flash[:success] = 'Avatar updated!'
+          redirect_to edit_user_registration_path(current_user.username)
+        end
+
+        format.turbo_stream do
+          @user.avatar.attach(params[:user][:avatar])
+          @user.resize_avatar
+          flash.now[:success] = 'Avatar updated with turbo stream!'
+          render :update
         end
       end
     else
-      render :edit
+      flash.now[:error] = 'Failed to update user.'
     end
   end
 
