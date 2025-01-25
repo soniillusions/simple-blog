@@ -40,6 +40,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def set_user
+    @user = User.find_by(username: params[:username])
+    redirect_to root_path, alert: 'User not found.' unless @user
+  end
+
+  def after_update_path_for(resource)
+    user_path(resource.username)
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[email username password password_confirmation])

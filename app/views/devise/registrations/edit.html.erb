@@ -10,21 +10,19 @@
                     "/images/default_avatar.jpg", data: { toggle: 'lightbox'} %>
         <% end %>
 
-        <%= form_with model: @user, local: true do |form| %>
+        <%= form_with model: @user, url: update_avatar_user_path(@user.username), method: :patch, local: true do |form| %>
           <%= form.file_field :avatar, class: 'form-control mb-2' %>
           <%= form.submit "Upload Avatar", class: 'btn btn-primary' %>
-        <% end %>
 
-        <% if @user.avatar_resized.attached? %>
-          <%= button_to "Delete Avatar", delete_avatar_user_path(@user), method: :delete, 
-              class: 'btn btn-danger mb-2', data: { confirm: 'Are you sure you want to delete your avatar?' } %>
+          <% if @user.avatar_resized.attached? %>
+            <button type="button" class="btn btn-danger mb-0" onclick="deleteAvatar('<%= delete_avatar_user_path(current_user.username) %>')">
+              Delete Avatar
+            </button>
+          <% end %>
         <% end %>
       </div>
 
       <div class="col-md-7">
-        <h2><%= @user.username %> </h2>
-          
-        <%= link_to "Back", :back, class: 'btn btn-primary btn-small mb-2' %>
       </div>
     </div>
   </div>
@@ -81,6 +79,27 @@
     </div>
   </div>
 </div>
+
+<% content_for :scripts do %>
+  <script>
+    function deleteAvatar(url) {
+      if (confirm('Are you sure you want to delete your avatar?')) {
+        fetch(url, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+            'Accept': 'text/javascript'
+          }
+        })
+        .then(response => {
+          if (response.redirected) {
+            window.location.href = response.url;
+          }
+        });
+      }
+    }
+  </script>
+<% end %>
 
 
 

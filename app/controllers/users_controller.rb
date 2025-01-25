@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_authentication, only: [:edit]
-  before_action :set_user_by_username, only: [:show]
-  before_action :set_user!, only: %i[edit update delete_avatar]
+  before_action :set_user_by_username, only: %i[show update_avatar delete_avatar]
+  before_action :set_user!, only: %i[edit]
 
   def show
     @pagy, @posts = pagy @user.posts.order(created_at: :desc)
@@ -10,15 +10,18 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def update
+  def update_avatar
     if @user.update user_params
       if params[:user][:avatar].present?
-        @user.avatar.attach(params[:user][:avatar])
-        @user.resize_avatar
+        respond_to do |format|
+          format.html do
+            @user.avatar.attach(params[:user][:avatar])
+            @user.resize_avatar
+            redirect_to edit_user_registration_path(current_user.username)
+            flash[:success] = 'Avatar updated!'
+          end
+        end
       end
-
-      flash[:success] = 'Profile updated'
-      redirect_to root_path
     else
       render :edit
     end
@@ -27,7 +30,8 @@ class UsersController < ApplicationController
   def delete_avatar
     @user.avatar.purge
     @user.avatar_resized.purge
-    redirect_to @user, notice: 'Avatar was successfully deleted.'
+    redirect_to edit_user_registration_path(current_user.username)
+    flash[:success] = 'Avatar was successfully deleted!'
   end
 
   private
