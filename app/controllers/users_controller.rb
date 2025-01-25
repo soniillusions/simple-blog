@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         format.turbo_stream do
           @user.avatar.attach(params[:user][:avatar])
           @user.resize_avatar
-          flash.now[:success] = 'Avatar updated with turbo stream!'
+          flash.now[:success] = 'Avatar was successfully updated!'
           render :update
         end
       end
