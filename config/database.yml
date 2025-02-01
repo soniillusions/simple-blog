@@ -82,3 +82,4 @@ production:
   database: online_today_production
   username: online_today
   password: <%= ENV["ONLINE_TODAY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
