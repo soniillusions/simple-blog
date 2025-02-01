@@ -5,18 +5,6 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Home', posts_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Friends', root_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Messages', root_path, class: 'nav-link' %>
-          </li>
-        <% end %>
-
-        <% if user_signed_in? %>
-          <li class="nav-item">
             <%= link_to 'Edit profile', edit_user_registration_path(current_user.username), class: 'nav-link' %>
           </li>
         <% end %>
