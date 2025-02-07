@@ -3,6 +3,7 @@
 set -o errexit
 
 bundle install
+corepack enable
 yarn install
 bundle exec rake assets:precompile 
 bundle exec rake assets:clean
