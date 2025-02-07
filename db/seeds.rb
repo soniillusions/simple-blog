@@ -8,7 +8,53 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-30.times do
-  title = Faker::Hipster.word
-  Tag.create title: title
+tags = %w[
+  ruby
+  rails
+  web_dev
+  full_stack
+  backend
+  frontend
+  apis
+  code_opt
+  tdd
+  mvc
+  activerecord
+  db_design
+  code_review
+  deployment
+  gems
+  devops
+  agile
+  design_patterns
+  ci
+  js_for_rails
+  job_search
+  interviews
+  resume_tips
+  interview_tips
+  coding_challenges
+  technical_interview
+  soft_skills
+  career_growth
+  portfolio
+  freelancing
+  remote_work
+  interview_preparation
+  technical_skills
+  coding_interviews
+  personal_projects
+  networking
+  job_offer
+  salary_negotiation
+  mentorship
+  job_hunting_tips
+  code_quality
+  developer_community
+  online_courses
+  job_market
+]
+
+tags.each do |tag|
+  Tag.create(title: tag)
 end
