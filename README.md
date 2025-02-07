@@ -1,24 +1,34 @@
-# README
+# simple-blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+Ensure you have Ruby on Rails installed. Then, install the required gems:
 
-* Ruby version
+```sh
+bundle install
+```
 
-* System dependencies
+Set up the database:
 
-* Configuration
+```sh
+rails db:create db:migrate db:seed
+```
 
-* Database creation
+## Running the Application
 
-* Database initialization
+To start the application, run:
 
-* How to run the test suite
+```sh
+bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+By default, the application will be available at `http://localhost:3000`.
 
-* Deployment instructions
+## Features
 
-* ...
+- User authentication and account management via `Devise`.
+- Users can create, edit, and delete posts.
+- Users can leave comments on posts.
+- Image zooming functionality using `bs5-lightbox`.
+- Avatar image resizing using `mini_magick`.
+
