@@ -1,4 +1,10 @@
 # simple-blog
+Simple copy of Twitter
+
+<p align="center">
+<img scr="https://github.com/user-attachments/assets/cdd6d065-b3b8-40bb-87fc-d167defbcf31">
+</p>
+
 
 ## Installation
 
