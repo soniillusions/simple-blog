@@ -1,10 +1,16 @@
 # simple-blog
-Simple copy of Twitter
+Simple copy of Twitter.
+## Features
+
+- User authentication and account management via `Devise`.
+- Users can create, edit, and delete posts.
+- Users can leave comments on posts.
+- Image zooming functionality using `bs5-lightbox`.
+- Avatar image resizing using `mini_magick`.
 
 <p align="center">
-<img scr="https://github.com/user-attachments/assets/cdd6d065-b3b8-40bb-87fc-d167defbcf31">
+<img src="https://github.com/user-attachments/assets/f8f03785-7dcc-47cd-8e2e-4417c6698ae2">
 </p>
-
 
 ## Installation
 
@@ -29,12 +35,4 @@ bin/dev
 ```
 
 By default, the application will be available at `http://localhost:3000`.
-
-## Features
-
-- User authentication and account management via `Devise`.
-- Users can create, edit, and delete posts.
-- Users can leave comments on posts.
-- Image zooming functionality using `bs5-lightbox`.
-- Avatar image resizing using `mini_magick`.
 
