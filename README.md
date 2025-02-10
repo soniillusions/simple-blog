@@ -19,11 +19,9 @@ Ensure you have Ruby on Rails installed. Then, install the required gems:
 ```sh
 bundle install
 ```
-
-Set up the database:
-
+Installs all dependencies:
 ```sh
-rails db:create db:migrate db:seed
+yarn install
 ```
 
 ## Running the Application
