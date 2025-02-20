@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :avatar, blob: { content_type: :image } # supported options: :web_image, :image, :audio, :video, :text
   validates :username, uniqueness: { case_sensitive: false },
-                       length: { minimum: 3, maximum: 20 },
+                       length: { minimum: 3, maximum: 25 },
                        presence: true,
                        if: -> { persisted? && username_changed? }
 
@@ -46,6 +46,6 @@ class User < ApplicationRecord
   private
 
   def generate_random_username
-    self.username = 'user#' + SecureRandom.hex(6)
+    self.username = "user#{SecureRandom.hex(6)}"
   end
 end
