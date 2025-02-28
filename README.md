@@ -19,7 +19,9 @@ Ensure you have Ruby on Rails installed. Then, install the required gems:
 ```sh
 bundle install
 ```
-Installs all dependencies:
+
+Install JavaScript dependencies:
+
 ```sh
 yarn install
 ```
